@@ -41,12 +41,12 @@ Param (
 Process {
 
 Function Get-VhdPath($initialDirectory)
-{   
- [System.Reflection.Assembly]::LoadWithPartialName(“System.windows.forms”) | Out-Null
+{
+ [System.Reflection.Assembly]::LoadWithPartialName("System.windows.forms") | Out-Null
 
  $OpenFileDialog = New-Object System.Windows.Forms.OpenFileDialog
  $OpenFileDialog.initialDirectory = $initialDirectory
- $OpenFileDialog.filter = “Virtual Hard Disk (*.vhd)| *.vhd”
+ $OpenFileDialog.filter = "Virtual Hard Disk (*.vhd)| *.vhd"
  $OpenFileDialog.ShowDialog() | Out-Null
  $OpenFileDialog.filename
 } #end function Get-VhdPath
@@ -62,7 +62,7 @@ Select-AzureRmSubscription -SubscriptionId $subscriptionId -ErrorAction Stop
 # Select Azure Resource Group 
 if (!($ResourceGroupName)){$ResourceGroupName = (Get-AzureRmResourceGroup | Out-GridView -Title "Select an Azure Resource Group ..." -PassThru).ResourceGroupName}
 
-if (!($ImagePath)) {$ImagePath = Get-VhdPath -initialDirectory “C:”}
+if (!($ImagePath)) {$ImagePath = Get-VhdPath -initialDirectory "C:"}
 
 #Prompt for VHD name and source path
 #[System.Reflection.Assembly]::LoadWithPartialName('Microsoft.VisualBasic') | Out-Null
